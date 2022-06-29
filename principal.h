@@ -2,6 +2,15 @@
 #define PRINCIPAL_H
 
 #include <QMainWindow>
+#include <QImage>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QDebug>
+#include <QInputDialog>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
@@ -12,13 +21,19 @@ class Principal : public QMainWindow
     Q_OBJECT
 
 public:
+    // Constructor
     Principal(QWidget *parent = nullptr);
+    // Destructor
     ~Principal();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
+    // Son eventos del Mouse
+    // Presionas clic derecho
     void mousePressEvent(QMouseEvent *event) override;
+    // Mueves el mouse
     void mouseMoveEvent(QMouseEvent *event) override;
+    // Sueltas el mouse
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 
@@ -35,7 +50,7 @@ private slots:
 
 private:
     Ui::Principal *ui;
-    QImage *mImagen;        // Imagen sobre la que se va a dibujar
+    QImage *mImagen;        // QImagen -> objeto tipo imagen -> Imagen sobre la que se va a dibujar
     QPainter *mPainter;     // Painter de la imagen
     QPoint mInicial;        // Punto incial para dibujar la línea
     QPoint mFinal;          // Punto final para dibujar la línea
