@@ -48,6 +48,12 @@ private slots:
 
     void on_actionGuardar_triggered();
 
+    void on_actionLineas_triggered();
+
+    void on_actionCircunferencias_triggered();
+
+    void on_actionRect_nculos_triggered();
+
 private:
     Ui::Principal *ui;
     QImage *mImagen;        // QImagen -> objeto tipo imagen -> Imagen sobre la que se va a dibujar

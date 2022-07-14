@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>Recursos/img/Ancho.png</file>
+        <file>Recursos/img/Cicunferencia.png</file>
+        <file>Recursos/img/Colores.png</file>
+        <file>Recursos/img/Guardar.png</file>
+        <file>Recursos/img/Libre.png</file>
+        <file>Recursos/img/Linea.png</file>
+        <file>Recursos/img/Nuevo.png</file>
+        <file>Recursos/img/Rectángulo.png</file>
+        <file>Recursos/img/salida.png</file>
+    </qresource>
+</RCC>

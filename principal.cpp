@@ -43,12 +43,12 @@ Principal::~Principal()
 
 void Principal::paintEvent(QPaintEvent *event)
 {
-   // Crear el painter de la ventana principal para poder tener la pantalla donde se va a dibujar
-   QPainter painter(this);
-   // Dibujar la imagen
-   painter.drawImage(0, 0, *mImagen);
-   // Aceptar el evento
-   event->accept();
+    // Crear el painter de la ventana principal para poder tener la pantalla donde se va a dibujar
+    QPainter painter(this);
+    // Dibujar la imagen
+    painter.drawImage(0, 0, *mImagen);
+    // Aceptar el evento
+    event->accept();
 }
 
 // Evento se dispara cuando presionas con el mouse
@@ -112,11 +112,27 @@ void Principal::on_actionAncho_triggered()
 void Principal::on_actionSalir_triggered()
 {
     this->close();
+
+    if(!mImagen->isNull()){
+        QMessageBox::StandardButton reply = QMessageBox::question(
+                    this,
+                    "Salir","Desea guardar el archivo",
+                    QMessageBox::Save | QMessageBox::Cancel);
+
+        if(reply == QMessageBox::Save ) {
+            on_actionGuardar_triggered();
+        } else{
+            this->close();
+        }
+    }else{
+        this->close();
+    }
+
 }
 
 void Principal::on_actionColor_triggered()
 {
-   // QColorDialog Es un cuadro de diálogo de un widget selector de color
+    // QColorDialog Es un cuadro de diálogo de un widget selector de color
     mColor = QColorDialog::getColor(mColor,
                                     this,
                                     "Color del Pincel");
@@ -129,11 +145,54 @@ void Principal::on_actionNuevo_triggered()
     update();
 }
 
+void Principal::on_actionLineas_triggered()
+{
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    // Dibujar una linea con el Painter (Pintor) Principal
+    mPainter->setPen(pincel);
+    mPainter->drawLine(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    // Actualizar la interfaz -> Se invoca al método PaintEvent (Repintar con paintEvent)
+    // Vuelve a dibujar la imagen para ver los cambios que surgen
+    update();
+
+}
+
+
+void Principal::on_actionCircunferencias_triggered()
+{
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    // Dibujar una linea con el Painter (Pintor) Principal
+    mPainter->setPen(pincel);
+    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()- mInicial.x(),mFinal.y()- mInicial.y());
+    // Actualizar la interfaz -> Se invoca al método PaintEvent (Repintar con paintEvent)
+    // Vuelve a dibujar la imagen para ver los cambios que surgen
+    update();
+}
+
+
+void Principal::on_actionRect_nculos_triggered()
+{
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    // Dibujar una linea con el Painter (Pintor) Principal
+    mPainter->setPen(pincel);
+    mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    // Actualizar la interfaz -> Se invoca al método PaintEvent (Repintar con paintEvent)
+    // Vuelve a dibujar la imagen para ver los cambios que surgen
+    update();
+}
+
+
 void Principal::on_actionGuardar_triggered()
 {
     // Abrir un cuadro de diálogo para obtener el nombre del Archivo
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
-                                                         "Guardar imagen",                                                        
+                                                         "Guardar imagen",
                                                          QString(),
                                                          "Imágenes .png (*.png)"); // Se conoce como el filtro solo muestra png
     // Validar que el Nombre del Archivo no sea vacío
@@ -145,9 +204,10 @@ void Principal::on_actionGuardar_triggered()
                                      "Guardar imagen",
                                      "Archivo almacenado en: " + nombreArchivo);
     }else{
-            // Si hay algún error, muestro advertencia
-            QMessageBox::warning(this,
-                                 "Guardar imagen",
-                                 "No se pudo almacenar la imagen.");
+        // Si hay algún error, muestro advertencia
+        QMessageBox::warning(this,
+                             "Guardar imagen",
+                             "No se pudo almacenar la imagen.");
     }
 }
+
