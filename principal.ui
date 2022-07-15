@@ -17,8 +17,8 @@
    <string>Principal</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>Recursos/img/paint.png</normaloff>Recursos/img/paint.png</iconset>
+   <iconset resource="Recursos.qrc">
+    <normaloff>:/new/prefix1/Recursos/img/paint.png</normaloff>:/new/prefix1/Recursos/img/paint.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -55,15 +55,22 @@
     <addaction name="actionRect_nculos"/>
     <addaction name="actionCircunferencias"/>
    </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="actionAcerca_de"/>
+   </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuEstilo"/>
    <addaction name="menuForma"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNuevo">
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Nuevo.png</normaloff>Recursos/img/Nuevo.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Nuevo.png</normaloff>:/new/prefix1/Recursos/img/Nuevo.png</iconset>
    </property>
    <property name="text">
     <string>Nuevo</string>
@@ -74,8 +81,8 @@
   </action>
   <action name="actionGuardar">
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Guardar.png</normaloff>Recursos/img/Guardar.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Guardar.png</normaloff>:/new/prefix1/Recursos/img/Guardar.png</iconset>
    </property>
    <property name="text">
     <string>Guardar</string>
@@ -86,8 +93,8 @@
   </action>
   <action name="actionSalir">
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/salida.png</normaloff>Recursos/img/salida.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/salida.png</normaloff>:/new/prefix1/Recursos/img/salida.png</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -98,8 +105,8 @@
   </action>
   <action name="actionColor">
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Colores.png</normaloff>Recursos/img/Colores.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Colores.png</normaloff>:/new/prefix1/Recursos/img/Colores.png</iconset>
    </property>
    <property name="text">
     <string>Color</string>
@@ -110,8 +117,8 @@
   </action>
   <action name="actionAncho">
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Ancho.png</normaloff>Recursos/img/Ancho.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Ancho.png</normaloff>:/new/prefix1/Recursos/img/Ancho.png</iconset>
    </property>
    <property name="text">
     <string>Ancho</string>
@@ -121,9 +128,12 @@
    </property>
   </action>
   <action name="actionLineas">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Linea.png</normaloff>Recursos/img/Linea.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Linea.png</normaloff>:/new/prefix1/Recursos/img/Linea.png</iconset>
    </property>
    <property name="text">
     <string>Lineas</string>
@@ -134,32 +144,49 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Libre.png</normaloff>Recursos/img/Libre.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Libre.png</normaloff>:/new/prefix1/Recursos/img/Libre.png</iconset>
    </property>
    <property name="text">
     <string>Libre</string>
    </property>
   </action>
   <action name="actionRect_nculos">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Rectángulo.png</normaloff>Recursos/img/Rectángulo.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Rectángulo.png</normaloff>:/new/prefix1/Recursos/img/Rectángulo.png</iconset>
    </property>
    <property name="text">
     <string>Rectánculos</string>
    </property>
   </action>
   <action name="actionCircunferencias">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Recursos/img/Cicunferencia.png</normaloff>Recursos/img/Cicunferencia.png</iconset>
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/Cicunferencia.png</normaloff>:/new/prefix1/Recursos/img/Cicunferencia.png</iconset>
    </property>
    <property name="text">
     <string>Circunferencias</string>
    </property>
   </action>
+  <action name="actionAcerca_de">
+   <property name="icon">
+    <iconset resource="Recursos.qrc">
+     <normaloff>:/new/prefix1/Recursos/img/paint.png</normaloff>:/new/prefix1/Recursos/img/paint.png</iconset>
+   </property>
+   <property name="text">
+    <string>Acerca de</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

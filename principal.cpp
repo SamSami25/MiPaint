@@ -10,6 +10,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPoint>
 
 #define DEFAULT_ANCHO 3
 
@@ -111,8 +112,6 @@ void Principal::on_actionAncho_triggered()
 
 void Principal::on_actionSalir_triggered()
 {
-    this->close();
-
     if(!mImagen->isNull()){
         QMessageBox::StandardButton reply = QMessageBox::question(
                     this,
@@ -140,9 +139,25 @@ void Principal::on_actionColor_triggered()
 
 void Principal::on_actionNuevo_triggered()
 {
-    mImagen->fill(Qt::white);
-    mNumLineas = 0;
-    update();
+    if(!mImagen->isNull()){
+        QMessageBox::StandardButton reply = QMessageBox::question(
+                     this,
+                     "Nuevo Archivo","Desea guardar el archivo",
+                    QMessageBox::Save | QMessageBox::Cancel);
+
+        if(reply == QMessageBox::Save ) {
+            on_actionGuardar_triggered();
+        } else{
+            mImagen->fill(Qt::white);
+            mNumLineas = 0;
+            update();
+        }
+    }else{
+        mImagen->fill(Qt::white);
+        mNumLineas = 0;
+        update();
+    }
+
 }
 
 void Principal::on_actionLineas_triggered()
@@ -151,28 +166,13 @@ void Principal::on_actionLineas_triggered()
     pincel.setColor(mColor);
     pincel.setWidth(mAncho);
     // Dibujar una linea con el Painter (Pintor) Principal
-    mPainter->setPen(pincel);
-    mPainter->drawLine(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    QLine linea(mInicial.x(),mInicial.ry(),mFinal.x(),mFinal.ry());
+    mPainter->drawLine(linea);
     // Actualizar la interfaz -> Se invoca al método PaintEvent (Repintar con paintEvent)
     // Vuelve a dibujar la imagen para ver los cambios que surgen
     update();
 
 }
-
-
-void Principal::on_actionCircunferencias_triggered()
-{
-    QPen pincel;
-    pincel.setColor(mColor);
-    pincel.setWidth(mAncho);
-    // Dibujar una linea con el Painter (Pintor) Principal
-    mPainter->setPen(pincel);
-    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()- mInicial.x(),mFinal.y()- mInicial.y());
-    // Actualizar la interfaz -> Se invoca al método PaintEvent (Repintar con paintEvent)
-    // Vuelve a dibujar la imagen para ver los cambios que surgen
-    update();
-}
-
 
 void Principal::on_actionRect_nculos_triggered()
 {
@@ -187,6 +187,18 @@ void Principal::on_actionRect_nculos_triggered()
     update();
 }
 
+void Principal::on_actionCircunferencias_triggered()
+{
+    QPen pincel;
+    pincel.setColor(mColor);
+    pincel.setWidth(mAncho);
+    // Dibujar una linea con el Painter (Pintor) Principal
+    mPainter->setPen(pincel);
+    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+    // Actualizar la interfaz -> Se invoca al método PaintEvent (Repintar con paintEvent)
+    // Vuelve a dibujar la imagen para ver los cambios que surgen
+    update();
+}
 
 void Principal::on_actionGuardar_triggered()
 {
@@ -194,7 +206,7 @@ void Principal::on_actionGuardar_triggered()
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
                                                          "Guardar imagen",
                                                          QString(),
-                                                         "Imágenes .png (*.png)"); // Se conoce como el filtro solo muestra png
+                                                         "Imágenes(*.png)"); // Se conoce como el filtro solo muestra png
     // Validar que el Nombre del Archivo no sea vacío
     if ( !nombreArchivo.isEmpty() ){
         // Guardar la Imagen con un método
@@ -209,5 +221,20 @@ void Principal::on_actionGuardar_triggered()
                              "Guardar imagen",
                              "No se pudo almacenar la imagen.");
     }
+}
+
+
+
+
+void Principal::on_actionAcerca_de_triggered()
+{
+    // Crear un objeto del cuadro de diálogo
+    Acerca *dialog = new Acerca(this);
+    // Enviar datos a la otra ventana
+    dialog->setVersion(VERSION);
+    // Mostrar la venta en modo MODAL
+    dialog->exec();
+    // Luego de cerrar la ventana, se acceden a los datos de la misma
+    qDebug() << dialog->valor();
 }
 

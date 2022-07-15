@@ -12,6 +12,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "acerca.h"
+
+#define VERSION "0.2"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
 QT_END_NAMESPACE
@@ -39,20 +43,15 @@ protected:
 
 private slots:
     void on_actionAncho_triggered();
-
     void on_actionSalir_triggered();
-
     void on_actionColor_triggered();
-
     void on_actionNuevo_triggered();
-
     void on_actionGuardar_triggered();
-
     void on_actionLineas_triggered();
-
     void on_actionCircunferencias_triggered();
-
     void on_actionRect_nculos_triggered();
+
+    void on_actionAcerca_de_triggered();
 
 private:
     Ui::Principal *ui;

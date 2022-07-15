@@ -9,5 +9,7 @@
         <file>Recursos/img/Nuevo.png</file>
         <file>Recursos/img/Rectángulo.png</file>
         <file>Recursos/img/salida.png</file>
+        <file>Recursos/img/paint.png</file>
+        <file>Recursos/img/Universidad.png</file>
     </qresource>
 </RCC>

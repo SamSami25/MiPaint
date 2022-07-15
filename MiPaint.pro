@@ -16,13 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    acerca.cpp \
     main.cpp \
     principal.cpp
 
 HEADERS += \
+    acerca.h \
     principal.h
 
 FORMS += \
+    acerca.ui \
     principal.ui
 
 # Default rules for deployment.
@@ -34,12 +37,4 @@ RESOURCES += \
     Recursos.qrc
 
 DISTFILES += \
-    Recursos/img/Ancho.png \
-    Recursos/img/Cicunferencia.png \
-    Recursos/img/Colores.png \
-    Recursos/img/Guardar.png \
-    Recursos/img/Libre.png \
-    Recursos/img/Linea.png \
-    Recursos/img/Nuevo.png \
-    Recursos/img/Rectángulo.png \
-    Recursos/img/salida.png
+    Recursos/img/Rectángulo.png
